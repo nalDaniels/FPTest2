@@ -1,0 +1,43 @@
+npm WARN read-shrinkwrap This version of npm is compatible with lockfileVersion@1, but package-lock.json was generated for lockfileVersion@2. I'll try to do my best with it!
+
+> node-sass@7.0.3 install /home/ubuntu/quiz-network-server/react/node_modules/node-sass
+> node scripts/install.js
+
+Downloading binary from https://github.com/sass/node-sass/releases/download/v7.0.3/linux-x64-83_binding.node
+Download complete
+Binary saved to /home/ubuntu/quiz-network-server/react/node_modules/node-sass/vendor/linux-x64-83/binding.node
+Caching binary to /home/ubuntu/.npm/node-sass/7.0.3/linux-x64-83_binding.node
+
+> core-js@3.26.1 postinstall /home/ubuntu/quiz-network-server/react/node_modules/core-js
+> node -e "try{require('./postinstall')}catch(e){}"
+
+[96mThank you for using core-js ([94m https://github.com/zloirock/core-js [96m) for polyfilling JavaScript standard library![0m
+
+[96mThe project needs your help! Please consider supporting of core-js:[0m
+[96m>[94m https://opencollective.com/core-js [0m
+[96m>[94m https://patreon.com/zloirock [0m
+[96m>[94m bitcoin: bc1qlea7544qtsmj2rayg0lthvza9fau63ux0fstcz [0m
+
+[96mAlso, the author of core-js ([94m https://github.com/zloirock [96m) is looking for a good job -)[0m
+
+
+> core-js-pure@3.26.1 postinstall /home/ubuntu/quiz-network-server/react/node_modules/core-js-pure
+> node -e "try{require('./postinstall')}catch(e){}"
+
+
+> node-sass@7.0.3 postinstall /home/ubuntu/quiz-network-server/react/node_modules/node-sass
+> node scripts/build.js
+
+Binary found at /home/ubuntu/quiz-network-server/react/node_modules/node-sass/vendor/linux-x64-83/binding.node
+Testing binary
+Binary is fine
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.3.2 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+added 1624 packages from 791 contributors and audited 1625 packages in 33.272s
+
+233 packages are looking for funding
+  run `npm fund` for details
+
+found 96 vulnerabilities (69 moderate, 14 high, 13 critical)
+  run `npm audit fix` to fix them, or `npm audit` for details
