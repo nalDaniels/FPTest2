@@ -28,6 +28,7 @@ pipeline {
             steps {
               dir('Dep9/frontend') {
                 sh 'sudo docker push djtoler/be_final3d'
+                sh 'sudo docker push djtoler/fe_final3d'
               }
             }
         }
