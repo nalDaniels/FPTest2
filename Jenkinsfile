@@ -14,7 +14,7 @@ pipeline {
                 docker rmi djtoler/be_final3:latest || true
                 docker rmi djtoler/fe_final3:latest || true
                 IP=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=FPJ_Docker_Agent" --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
-                cd ../../react/src
+                cd ../react/src
                 sed -i "s|const URL = \"http://.*\"|const URL = \"http://$IP:8000\"|" App.js
                 cd service
                 sed -i "s|const URL = \"http://.*\"|const URL = \"http://$IP:8000\"|" api.js
