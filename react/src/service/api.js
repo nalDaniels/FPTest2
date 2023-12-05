@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://backend:8000";
+const URL = process.env.REACT_APP_BACKEND_URL;
 
 export const addUser = async (data) => {
   try {
