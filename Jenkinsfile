@@ -47,4 +47,6 @@ pipeline {
                 sh 'sudo docker compose up'
             }
         }
+    }
+}
         
