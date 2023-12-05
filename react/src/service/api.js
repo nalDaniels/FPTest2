@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const URL = "http://44.211.125.115:8000";
+const URL = "http://backend:8000";
+
 export const addUser = async (data) => {
   try {
     return await axios.post(`${URL}/signup`, data);
