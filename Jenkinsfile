@@ -14,6 +14,7 @@ pipeline {
                 docker rmi djtoler/be_final3:latest || true
                 docker rmi djtoler/fe_final3:latest || true
                 IP=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=FPJ_Docker_Agent" --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
+                echo $IP
                 cd ../react/src
                 sed -i "s|const URL = \"http://.*\"|const URL = \"http://$IP:8000\"|" App.js
                 cd service
@@ -44,6 +45,7 @@ pipeline {
 
         stage('Compose') {
             steps {
+                sh 'cd /home/ubuntu/docker_agent/workspace/finalproject_main/docker'
                 sh 'sudo docker compose up'
             }
         }
