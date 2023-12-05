@@ -18,10 +18,10 @@ pipeline {
                 sed -i "s|const URL = \"http://.*\"|const URL = \"http://$IP:8000\"|" App.js
                 cd service
                 sed -i "s|const URL = \"http://.*\"|const URL = \"http://$IP:8000\"|" api.js
-                cd ../../docker/front
+                cd /home/ubuntu/docker_agent/workspace/finalproject_main/docker/front
                 pwd
                 docker build --no-cache -t djtoler/fe_final3 .
-                cd ../back
+                cd /home/ubuntu/docker_agent/workspace/finalproject_main/docker/back
                 pwd
                 docker build --no-cache -t djtoler/be_final3 .
               '''
