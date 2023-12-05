@@ -1,0 +1,15 @@
+version: '3'
+services:
+  frontend:
+    image: djtoler/fe_final3
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_BACKEND_URL=http://backend:8000
+
+  backend:
+    image: djtoler/be_final3
+    ports:
+      - "8000:8000"
