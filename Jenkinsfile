@@ -45,11 +45,9 @@ pipeline {
 
         stage('Compose') {
             steps {
-                sh 'pwd'
-                sh 'ls'
-                sh 'cd docker'
                 sh 'pwd && ls'
-                sh 'docker compose up'
+                sh 'cd docker && pwd && ls'
+                sh 'cd docker && docker compose up'
             }
         }
     }
