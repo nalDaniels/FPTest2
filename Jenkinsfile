@@ -15,8 +15,9 @@ pipeline {
                 docker rmi djtoler/fe_final3:latest || true
                 IP=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=FPJ_Docker_Agent" --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
                 echo $IP
-                cd ../react/src && sed -i "s|const URL = process.env.REACT_APP_BACKEND_URL;|const URL = 'http://$IP:8000';|" App.js
-                cd ../react/src/service && sed -i "s|const URL = process.env.REACT_APP_BACKEND_URL;|const URL = 'http://$IP:8000';|" api.js
+                cd ../react/src && pwd && sed -i "s|const URL = process.env.REACT_APP_BACKEND_URL;|const URL = 'http://$IP:8000';|" App.js
+                pwd
+                cd ../react/src/service && pwd && sed -i "s|const URL = process.env.REACT_APP_BACKEND_URL;|const URL = 'http://$IP:8000';|" api.js
                 cd /home/ubuntu/docker_agent/workspace/finalproject_main/docker/front && pwd && ls && docker build --no-cache -t djtoler/fe_final3 .
                 cd /home/ubuntu/docker_agent/workspace/finalproject_main/docker/back && pwd && ls && docker build --no-cache -t djtoler/be_final3 .
               '''
