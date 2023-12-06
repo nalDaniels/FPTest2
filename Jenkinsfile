@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('SetHost') {
             steps {
-              {
+               {
                 sh '''#!/bin/bash
                 pwd
                 IP=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=FPJ_Docker_Agent" --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
