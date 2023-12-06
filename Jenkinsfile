@@ -49,13 +49,13 @@ pipeline {
             }
         }
 
-        stage('Compose') {
-            agent { label 'DockerAgent' } 
-            steps {
-                sh 'pwd && ls'
-                sh 'cd docker && pwd && ls'
-                sh 'cd docker && docker compose up'
-            }
-        }
+        //stage('Compose') {
+            //agent { label 'DockerAgent' } 
+            //steps {
+                //sh 'pwd && ls'
+                //sh 'cd docker && pwd && ls'
+                //sh 'cd docker && docker compose up'
+            //}
+        //}
     }
 }
