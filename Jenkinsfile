@@ -45,8 +45,10 @@ pipeline {
 
         stage('Compose') {
             steps {
+                pwd
+                ls
                 sh 'cd /home/ubuntu/docker_agent/workspace/finalproject_main/docker'
-                sh 'sudo docker-compose up'
+                sh 'docker-compose up'
             }
         }
     }
