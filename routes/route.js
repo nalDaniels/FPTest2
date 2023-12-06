@@ -126,37 +126,18 @@ router.post("/signup", async (request, response) => {
 
 router.post("/login", async (request, response) => {
   const { username, password } = request.body;
-  console.log("in login")
 
   try {
-    // Try to get user data from Redis first
-    const redisKey = `user:${username}:${password}`;
-    redisClient.get(redisKey, async (err, user) => {
-      if (user) {
-        const userData = JSON.parse(user);
-        console.log("reading from redis")
-        request.session.user = userData._id;
+    User.findOne({ username: username, password: password }, (err, docs) => {
+      if (docs) {
+        request.session.user = docs._id;
         request.session.isAuth = true;
         console.log(request.session);
         response.send(true);
       } else {
-        // If not in Redis, query MongoDB
-        User.findOne({ username: username, password: password }, (err, docs) => {
-          if (docs) {
-            console.log("reading from redis")
-            // Save to Redis for future requests
-            redisClient.set(redisKey, JSON.stringify(docs));
-            console.log("in wrote to redis")
-            request.session.user = docs._id;
-            request.session.isAuth = true;
-            console.log(request.session);
-            response.send(true);
-          } else {
-            response.send(false);
-          }
-        }).lean();
+        response.send(false);
       }
-    });
+    }).lean();
   } catch (error) {
     console.log(error);
     response.status(409).json({ message: error.message });
