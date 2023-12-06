@@ -47,8 +47,9 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls'
-                sh 'cd /home/ubuntu/docker_agent/workspace/finalproject_main/docker'
-                sh 'docker-compose up'
+                sh 'cd docker'
+                sh 'pwd && ls'
+                sh 'docker compose up'
             }
         }
     }
