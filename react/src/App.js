@@ -26,6 +26,7 @@ function App() {
   // Sending Request For Checking Authentication
 
   const URL = process.env.REACT_APP_BACKEND_URL;
+  console.log(URL)
   
   axios.defaults.withCredentials = true;
   const AuthUser = async () => {
