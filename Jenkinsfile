@@ -8,14 +8,14 @@ pipeline {
     stages {
         stage('SetHost') {
             steps {
-              dir('react') {
+              {
                 sh '''#!/bin/bash
                 pwd
                 IP=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=FPJ_Docker_Agent" --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
                 echo $IP
-                cd src && sed -i "s|const URL = process.env.REACT_APP_BACKEND_URL;|const URL = 'http://$IP:8000';|" App.js
+                cd react && cd src && sed -i "s|const URL = process.env.REACT_APP_BACKEND_URL;|const URL = 'http://$IP:8000';|" App.js
                 pwd
-                cd src/service && pwd && sed -i "s|const URL = process.env.REACT_APP_BACKEND_URL;|const URL = 'http://$IP:8000';|" api.js
+                cd react && cd src && cd service && pwd && sed -i "s|const URL = process.env.REACT_APP_BACKEND_URL;|const URL = 'http://$IP:8000';|" api.js
                 pwd
               '''
               }
