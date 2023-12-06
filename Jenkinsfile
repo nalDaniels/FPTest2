@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     environment {
         DOCKERHUB_CREDENTIALS = credentials('djtoler-dockerhub')
         PATH = "/home/ubuntu/.nvm/versions/node/v10.24.1/bin:$PATH"
