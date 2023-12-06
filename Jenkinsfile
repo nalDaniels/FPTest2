@@ -14,7 +14,7 @@ pipeline {
                 echo $IP
                 cd react/src && sed -i "s|const URL = process.env.REACT_APP_BACKEND_URL;|const URL = 'http://$IP:8000';|" App.js
                 pwd
-                cd ../../service && sed -i "s|const URL = process.env.REACT_APP_BACKEND_URL;|const URL = 'http://$IP:8000';|" api.js
+                cd service && sed -i "s|const URL = process.env.REACT_APP_BACKEND_URL;|const URL = 'http://$IP:8000';|" api.js
                 pwd
                 '''
             }
