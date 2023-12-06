@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         DOCKERHUB_CREDENTIALS = credentials('djtoler-dockerhub')
-        PATH = "/home/ubuntu/.nvm/versions/node/v10.24.1/bin:$PATH"
     }
     
     stages {
@@ -28,7 +27,7 @@ pipeline {
                 pwd
                 docker rmi djtoler/be_final3:latest || true
                 docker rmi djtoler/fe_final3:latest || true
-                cd /front && pwd && ls && docker build --no-cache -t djtoler/fe_final3 .
+                cd /home/ubuntu/docker_agent/workspace/finalproject_main/docker/front && pwd && ls && docker build --no-cache -t djtoler/fe_final3 .
                 cd /home/ubuntu/docker_agent/workspace/finalproject_main/docker/back && pwd && ls && docker build --no-cache -t djtoler/be_final3 .
               '''
               }
