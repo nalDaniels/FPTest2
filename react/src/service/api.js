@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "44.204.48.174:8000";
+const URL = "";
 
 export const addUser = async (data) => {
   try {
