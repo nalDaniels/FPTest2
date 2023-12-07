@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://fpjbackend-service:80";
+const URL = "";
 
 export const addUser = async (data) => {
   try {
