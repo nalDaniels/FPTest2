@@ -16,7 +16,7 @@ import Quiz from "./afterLogin/Quiz";
 import "./App.scss";
 
 function App() {
-  const URL = "http://fpjbackend-service:80";
+  const URL = "";
   console.log(URL, "<---URL")
   let tempValue = false;
   if (JSON.parse(localStorage.getItem("IsAuth")) !== null) {
