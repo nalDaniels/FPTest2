@@ -96,7 +96,7 @@ const Myquizes = () => {
               <input
                 type="text"
                 value={
-                  "https://quiz-network-lhfp.onrender.com/#/" + quizDetails.link
+                  "https://http://44.204.48.174:3000/#/" + quizDetails.link
                 }
                 disabled="true"
               ></input>
