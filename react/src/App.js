@@ -15,6 +15,8 @@ import Quiz from "./afterLogin/Quiz";
 
 import "./App.scss";
 
+axios.defaults.baseURL = 'http://44.204.48.174:8000';
+
 function App() {
   const URL = "";
   console.log(URL, "<----URL")
