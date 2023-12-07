@@ -1,4 +1,5 @@
 import axios from "axios";
+axios.defaults.baseURL = 'http://44.204.48.174:8000';
 
 const URL = "";
 
