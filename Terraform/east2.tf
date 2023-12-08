@@ -19,52 +19,52 @@ resource "aws_vpc" "vpceast2" {
 }
 
 # CREATE SUBNETS
-resource "aws_subnet" "publicsubnet1" {
+resource "aws_subnet" "publicsubnet3" {
   provider = aws.east2
   vpc_id     = aws_vpc.vpceast2.id
   cidr_block = "10.0.1.0/24"
   availability_zone = "us-east-2a"
   map_public_ip_on_launch = true
   tags = {
-    Name = "publicsubnet1"
+    Name = "publicsubnet3"
   }
 }
 
-resource "aws_subnet" "privatesubnet1" {
+resource "aws_subnet" "privatesubnet3" {
   provider = aws.east2
   vpc_id     = aws_vpc.vpceast2.id
   cidr_block = "10.0.2.0/24"
   availability_zone = "us-east-2a"
   map_public_ip_on_launch = true
   tags = {
-    Name = "privatesubnet1"
+    Name = "privatesubnet3"
   }
 }
 
-resource "aws_subnet" "publicsubnet2" {
+resource "aws_subnet" "publicsubnet4" {
   provider = aws.east2
   vpc_id     = aws_vpc.vpceast2.id
   cidr_block = "10.0.3.0/24"
   availability_zone = "us-east-2b"
   map_public_ip_on_launch = true
   tags = {
-    Name = "publicsubnet2"
+    Name = "publicsubnet4"
   }
 }
 
-resource "aws_subnet" "privatesubnet2" {
+resource "aws_subnet" "privatesubnet4" {
   provider = aws.east2
   vpc_id     = aws_vpc.vpceast2.id
   cidr_block = "10.0.5.0/24"
   availability_zone = "us-east-2b"
   map_public_ip_on_launch = true
   tags = {
-    Name =  "privatesubnet2"
+    Name =  "privatesubnet4"
   }
 }
 
 # CREATE INTERNET GATEWAY
-resource "aws_internet_gateway" "gw" {
+resource "aws_internet_gateway" "gw2" {
   provider = aws.east2
   vpc_id = aws_vpc.vpceast2.id
   tags = {
@@ -73,63 +73,63 @@ resource "aws_internet_gateway" "gw" {
 }
 
 # CONFIGURE A NAT GATEWAY
-resource "aws_eip" "elastic-ip" {
-  provider = aws.east1
+resource "aws_eip" "elastic-ip2" {
+  provider = aws.east2
   domain = "vpc"
 }
 
-resource "aws_nat_gateway" "ngw" {
+resource "aws_nat_gateway" "ngw2" {
   provider = aws.east2
-  subnet_id     = aws_subnet.publicsubnet1.id
+  subnet_id     = aws_subnet.publicsubnet3.id
   allocation_id = aws_eip.elastic-ip.id
 }
 
 # CONFIGURE ROUTE TABLES
-resource "aws_route_table" "public" {
+resource "aws_route_table" "public2" {
   provider = aws.east2
   vpc_id = aws_vpc.vpceast2.id
 }
 
-resource "aws_route_table" "private" {
+resource "aws_route_table" "private2" {
   provider = aws.east2
   vpc_id = aws_vpc.vpceast2.id
 }
 
 # CONFIGURE ROUTES
-resource "aws_route" "private_ngw" {
+resource "aws_route" "private_ngw2" {
   provider = aws.east2
   route_table_id         = aws_route_table.private.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.ngw.id
 }
 
-resource "aws_route" "public_igw" {
+resource "aws_route" "public_igw2" {
   provider = aws.east2
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.gw.id
 }
 
-resource "aws_route_table_association" "public_1_subnet" {
+resource "aws_route_table_association" "public_3_subnet" {
   provider = aws.east2
-  subnet_id      = aws_subnet.publicsubnet1.id
+  subnet_id      = aws_subnet.publicsubnet3.id
   route_table_id = aws_route_table.public.id
 }
 
-resource "aws_route_table_association" "private_1_subnet" {
+resource "aws_route_table_association" "private_3_subnet" {
   provider = aws.east2
-  subnet_id      = aws_subnet.privatesubnet1.id
+  subnet_id      = aws_subnet.privatesubnet3.id
   route_table_id = aws_route_table.private.id
 }
 
-resource "aws_route_table_association" "public_2_subnet" {
+resource "aws_route_table_association" "public_4_subnet" {
   provider = aws.east2
-  subnet_id      = aws_subnet.publicsubnet2.id
+  subnet_id      = aws_subnet.publicsubnet4.id
   route_table_id = aws_route_table.public.id
 }
 
-resource "aws_route_table_association" "private_2_subnet" {
+resource "aws_route_table_association" "private_4_subnet" {
   provider = aws.east2
-  subnet_id      = aws_subnet.privatesubnet2.id
+  subnet_id      = aws_subnet.privatesubnet4.id
   route_table_id = aws_route_table.private.id
 }
