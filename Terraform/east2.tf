@@ -81,7 +81,7 @@ resource "aws_eip" "elastic-ip2" {
 resource "aws_nat_gateway" "ngw2" {
   provider = aws.east2
   subnet_id     = aws_subnet.publicsubnet3.id
-  allocation_id = aws_eip.elastic-ip.id
+  allocation_id = aws_eip.elastic-ip2.id
 }
 
 # CONFIGURE ROUTE TABLES
@@ -98,38 +98,38 @@ resource "aws_route_table" "private2" {
 # CONFIGURE ROUTES
 resource "aws_route" "private_ngw2" {
   provider = aws.east2
-  route_table_id         = aws_route_table.private.id
+  route_table_id         = aws_route_table.private2.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.ngw.id
+  nat_gateway_id         = aws_nat_gateway.ngw2.id
 }
 
 resource "aws_route" "public_igw2" {
   provider = aws.east2
-  route_table_id         = aws_route_table.public.id
+  route_table_id         = aws_route_table.public2.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.gw.id
+  gateway_id             = aws_internet_gateway.gw2.id
 }
 
 resource "aws_route_table_association" "public_3_subnet" {
   provider = aws.east2
   subnet_id      = aws_subnet.publicsubnet3.id
-  route_table_id = aws_route_table.public.id
+  route_table_id = aws_route_table.public2.id
 }
 
 resource "aws_route_table_association" "private_3_subnet" {
   provider = aws.east2
   subnet_id      = aws_subnet.privatesubnet3.id
-  route_table_id = aws_route_table.private.id
+  route_table_id = aws_route_table.private2.id
 }
 
 resource "aws_route_table_association" "public_4_subnet" {
   provider = aws.east2
   subnet_id      = aws_subnet.publicsubnet4.id
-  route_table_id = aws_route_table.public.id
+  route_table_id = aws_route_table.public2.id
 }
 
 resource "aws_route_table_association" "private_4_subnet" {
   provider = aws.east2
   subnet_id      = aws_subnet.privatesubnet4.id
-  route_table_id = aws_route_table.private.id
+  route_table_id = aws_route_table.private2.id
 }
