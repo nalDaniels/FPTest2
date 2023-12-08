@@ -7,21 +7,21 @@ provider "aws" {
 }
 
 # CREATE VPC
-resource "aws_vpc" "vpceast2" {
+resource "aws_vpc" "vpceast1" {
   provider = aws.east1
   cidr_block       = "10.0.0.0/16"
   instance_tenancy = "default"
   enable_dns_support = true
 
   tags = {
-    Name = "VPC-East2" 
+    Name = "VPC-East1" 
   }
 }
 
 # CREATE SUBNETS
 resource "aws_subnet" "publicsubnet1" {
   provider = aws.east1
-  vpc_id     = aws_vpc.vpceast2.id
+  vpc_id     = aws_vpc.vpceast1.id
   cidr_block = "10.0.1.0/24"
   availability_zone = "us-east-2a"
   map_public_ip_on_launch = true
@@ -32,7 +32,7 @@ resource "aws_subnet" "publicsubnet1" {
 
 resource "aws_subnet" "privatesubnet1" {
   provider = aws.east1
-  vpc_id     = aws_vpc.vpceast2.id
+  vpc_id     = aws_vpc.vpceast1.id
   cidr_block = "10.0.2.0/24"
   availability_zone = "us-east-2a"
   map_public_ip_on_launch = true
@@ -43,7 +43,7 @@ resource "aws_subnet" "privatesubnet1" {
 
 resource "aws_subnet" "publicsubnet2" {
   provider = aws.east1
-  vpc_id     = aws_vpc.vpceast2.id
+  vpc_id     = aws_vpc.vpceast1.id
   cidr_block = "10.0.3.0/24"
   availability_zone = "us-east-2b"
   map_public_ip_on_launch = true
@@ -54,7 +54,7 @@ resource "aws_subnet" "publicsubnet2" {
 
 resource "aws_subnet" "privatesubnet2" {
   provider = aws.east1
-  vpc_id     = aws_vpc.vpceast2.id
+  vpc_id     = aws_vpc.vpceast1.id
   cidr_block = "10.0.5.0/24"
   availability_zone = "us-east-2b"
   map_public_ip_on_launch = true
@@ -66,7 +66,7 @@ resource "aws_subnet" "privatesubnet2" {
 # CREATE INTERNET GATEWAY
 resource "aws_internet_gateway" "gw" {
   provider = aws.east1
-  vpc_id = aws_vpc.vpceast2.id
+  vpc_id = aws_vpc.vpceast1.id
   tags = {
     Name = "eksig"
   }
@@ -87,12 +87,12 @@ resource "aws_nat_gateway" "ngw" {
 # CONFIGURE ROUTE TABLES
 resource "aws_route_table" "public" {
   provider = aws.east1
-  vpc_id = aws_vpc.vpceast2.id
+  vpc_id = aws_vpc.vpceast1.id
 }
 
 resource "aws_route_table" "private" {
   provider = aws.east1
-  vpc_id = aws_vpc.vpceast2.id
+  vpc_id = aws_vpc.vpceast1.id
 }
 
 # CONFIGURE ROUTES
