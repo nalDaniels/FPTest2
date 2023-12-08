@@ -73,8 +73,8 @@ resource "aws_internet_gateway" "gw" {
 }
 
 # CONFIGURE A NAT GATEWAY
-provider = aws.east1
 resource "aws_eip" "elastic-ip" {
+  provider = aws.east1
   domain = "vpc"
 }
 
